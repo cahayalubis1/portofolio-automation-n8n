@@ -1,0 +1,595 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cv-screaning",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -480,
+        -96
+      ],
+      "id": "db1a60e7-a57c-4609-8808-c2f18bee4aba",
+      "name": "Webhook",
+      "webhookId": "18b0a5a1-450b-4d6d-9acb-377ee1eee85c"
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.body.cv.replace(\"https://drive.google.com/open?id=\", \"\") }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -304,
+        -16
+      ],
+      "id": "e72e7aa1-616e-417b-872a-a44187374875",
+      "name": "Download file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "4wfxqI0UCAumuVCe",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -128,
+        -160
+      ],
+      "id": "465b2754-41a7-4109-8ef2-54beab469851",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a Senior HR Recruiter.\n\nAnalyze the following CV.\n\nMinimum requirements:\n\n1. Candidate must have at least a Bachelor's Degree (S1) or equivalent.\n2. Candidate must have work experience (any industry is acceptable).\n3. Candidate should have a complete CV with education, experience, and contact information.\n4. Evaluate whether the candidate appears suitable for employment.\n\nCV:\n\n{{$json.text}}\n\nReturn ONLY valid JSON in this format:\n\n{\n  \"candidate_name\": \"\",\n  \"education\": \"\",\n  \"has_bachelor_degree\": true,\n  \"has_work_experience\": true,\n  \"work_experience_years\": \"\",\n  \"match_score\": 0,\n  \"decision\": \"Interview or Reject\",\n  \"summary\": \"\",\n  \"strengths\": [],\n  \"weaknesses\": [],\n  \"recommendation\": \"\" \nYou are a Senior HR Recruiter.\n\nAnalyze the following CV.\n\nMinimum Requirements:\n\n1. Candidate must have at least a Bachelor's Degree (S1) or equivalent.\n2. Candidate must have work experience (any industry is acceptable).\n3. Candidate should have a complete CV including education, work experience, and contact information.\n\nEvaluation Rules:\n\n- Evaluate ONLY based on the minimum requirements provided.\n- Do NOT assume missing information.\n- Do NOT invent facts.\n- If information is missing, explicitly state that it is unavailable.\n- Only evaluate what is written in the CV.\n\nCV:\n\n{{$json.text}}\n\nReturn ONLY valid JSON.\n\n{\n  \"candidate_name\": \"\",\n  \"education\": \"\",\n  \"has_bachelor_degree\": false,\n  \"has_work_experience\": false,\n  \"work_experience_years\": \"\",\n  \"match_score\": 0,\n  \"decision\": \"\",\n  \"summary\": \"\",\n  \"strengths\": [],\n  \"weaknesses\": [],\n  \"recommendation\": \"\" You are a Senior HR Recruiter.\n\nAnalyze the following CV.\n\nMinimum Requirements:\n\n1. Candidate must have at least a Bachelor's Degree (S1) or equivalent.\n2. Candidate must have work experience (any industry is acceptable).\n3. Candidate should have a complete CV including education, work experience, and contact information.\n\nEvaluation Rules:\n\n- Evaluate ONLY based on the minimum requirements provided.\n- Do NOT assume missing information.\n- Do NOT invent facts.\n- If information is missing, explicitly state that it is unavailable.\n- Only evaluate what is written in the CV.\n\nCV:\n\n{{$json.text}}\n\nReturn ONLY valid JSON.\n\n{\n  \"candidate_name\": \"\",\n  \"education\": \"\",\n  \"has_bachelor_degree\": false,\n  \"has_work_experience\": false,\n  \"work_experience_years\": \"\",\n  \"match_score\": 0,\n  \"decision\": \"\",\n  \"summary\": \"\",\n  \"strengths\": [],\n  \"weaknesses\": [],\n  \"recommendation\": \"\"\nYou are a Senior HR Recruiter.\n\nAnalyze the following CV.\n\nMinimum Requirements:\n\n1. Candidate must have at least a Bachelor's Degree (S1) or equivalent.\n2. Candidate must have work experience (any industry is acceptable).\n3. Candidate should have a complete CV including education, work experience, and contact information.\n\nEvaluation Rules:\n\n- Evaluate ONLY based on the minimum requirements provided.\n- Do NOT assume missing information.\n- Do NOT invent facts.\n- If information is missing, explicitly state that it is unavailable.\n- Only evaluate what is written in the CV.\n\nCV:\n\n{{$json.text}}\n\nReturn ONLY valid JSON.\n\n{\n  \"candidate_name\": \"\",\n  \"education\": \"\",\n  \"has_bachelor_degree\": false,\n  \"has_work_experience\": false,\n  \"work_experience_years\": \"\",\n  \"match_score\": 0,\n  \"decision\": \"\",\n  \"summary\": \"\",\n  \"strengths\": [],\n  \"weaknesses\": [],\n  \"recommendation\": \"\" \nYou are a Senior HR Recruiter.\n\nAnalyze the following CV.\n\nMinimum Requirements:\n\n1. Candidate must have at least a Bachelor's Degree (S1) or equivalent.\n2. Candidate must have work experience (any industry is acceptable).\n3. Candidate should have a complete CV including education, work experience, and contact information.\n\nEvaluation Rules:\n\n- Evaluate ONLY based on the minimum requirements provided.\n- Do NOT assume missing information.\n- Do NOT invent facts.\n- If information is missing, explicitly state that it is unavailable.\n- Only evaluate what is written in the CV.\n\nCV:\n\n{{$json.text}}\n\nReturn ONLY valid JSON.\n\n{\n  \"candidate_name\": \"\",\n  \"education\": \"\",\n  \"has_bachelor_degree\": false,\n  \"has_work_experience\": false,\n  \"work_experience_years\": \"\",\n  \"match_score\": 0,\n  \"decision\": \"\",\n  \"summary\": \"\",\n  \"strengths\": [],\n  \"weaknesses\": [],\n  \"recommendation\": \"\" You are a Senior HR Recruiter.\n\nAnalyze the following CV.\n\nMinimum Requirements:\n\n1. Candidate must have at least a Bachelor's Degree (S1) or equivalent.\n2. Candidate must have work experience (any industry is acceptable).\n3. Candidate should have a complete CV including education, work experience, and contact information.\n\nEvaluation Rules:\n\n- Evaluate ONLY based on the minimum requirements provided.\n- Do NOT assume missing information.\n- Do NOT invent facts.\n- If information is missing, explicitly state that it is unavailable.\n- Only evaluate what is written in the CV.\n\nCV:\n\n{{$json.text}}\n\nReturn ONLY valid JSON.\n\n{\n  \"candidate_name\": \"\",\n  \"education\": \"\",\n  \"has_bachelor_degree\": false,\n  \"has_work_experience\": false,\n  \"work_experience_years\": \"\",\n  \"match_score\": 0,\n  \"decision\": \"\",\n  \"summary\": \"\",\n  \"strengths\": [],\n  \"weaknesses\": [],\n  \"recommendation\": \"\"\n}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        80,
+        16
+      ],
+      "id": "704d97a3-545f-4467-882c-dbb0a7397ee1",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -128,
+        160
+      ],
+      "id": "0b96520e-5ff7-4d68-83d6-5ccd114ad6cd",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "wElyyo04vQ5KcYXm",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = JSON.parse($json.output);\n\nreturn [\n  {\n    json: data\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        400,
+        -160
+      ],
+      "id": "4528a028-1aad-4c3b-9655-1140195064c2",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "17423f39-daaf-4bae-8cea-16566de0f673",
+              "leftValue": "={{ $json.match_score }}",
+              "rightValue": 70,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        544,
+        0
+      ],
+      "id": "cd728bd7-7e53-4b26-9b23-090d8aaf7f36",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1-1Qu0nSQJXUDl4wAADfUYsfKtBKROp3LUS4hC1j6gTY",
+          "mode": "list",
+          "cachedResultName": "cv screening from gform",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-1Qu0nSQJXUDl4wAADfUYsfKtBKROp3LUS4hC1j6gTY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-1Qu0nSQJXUDl4wAADfUYsfKtBKROp3LUS4hC1j6gTY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nama ": "={{ $json.candidate_name }}",
+            "Email": "={{ $('Webhook').item.json.body.email }}",
+            "Education": "={{ $json.education }}",
+            "Bachelor": "={{ $json.has_bachelor_degree }}",
+            "Work Eksperience": "={{ $json.has_work_experience }}",
+            "Eksperience Year": "={{ $json.work_experience_years }}",
+            "Match score": "={{ $json.match_score }}",
+            "Desicion": "={{ $json.decision }}",
+            "Summary": "={{ $json.summary }}",
+            "Recomendation": "={{ $json.recommendation }}",
+            "Timestamp": "={{ $('Webhook').item.json.body.timestamp }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nama ",
+              "displayName": "Nama ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Education",
+              "displayName": "Education",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Bachelor",
+              "displayName": "Bachelor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Work Eksperience",
+              "displayName": "Work Eksperience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Eksperience Year",
+              "displayName": "Eksperience Year",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Match score",
+              "displayName": "Match score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Desicion",
+              "displayName": "Desicion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Recomendation",
+              "displayName": "Recomendation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        800,
+        -112
+      ],
+      "id": "54a25c73-5fc4-4f07-98d3-64c575e11081",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ExayRKutA70vd2xr",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1-1Qu0nSQJXUDl4wAADfUYsfKtBKROp3LUS4hC1j6gTY",
+          "mode": "list",
+          "cachedResultName": "cv screening from gform",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-1Qu0nSQJXUDl4wAADfUYsfKtBKROp3LUS4hC1j6gTY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-1Qu0nSQJXUDl4wAADfUYsfKtBKROp3LUS4hC1j6gTY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $('Webhook').item.json.body.timestamp }}",
+            "Nama ": "={{ $('Code in JavaScript').item.json.candidate_name }}",
+            "Email": "={{ $('Webhook').item.json.body.email }}",
+            "Education": "={{ $('Code in JavaScript').item.json.education }}",
+            "Bachelor": "={{ $('Code in JavaScript').item.json.has_bachelor_degree }}",
+            "Work Eksperience": "={{ $('Code in JavaScript').item.json.has_work_experience }}",
+            "Eksperience Year": "={{ $('Code in JavaScript').item.json.work_experience_years }}",
+            "Match score": "={{ $('Code in JavaScript').item.json.match_score }}",
+            "Desicion": "={{ $('Code in JavaScript').item.json.decision }}",
+            "Summary": "={{ $('Code in JavaScript').item.json.summary }}",
+            "Recomendation": "={{ $('Code in JavaScript').item.json.recommendation }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Timestamp",
+              "displayName": "Timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nama ",
+              "displayName": "Nama ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Education",
+              "displayName": "Education",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Bachelor",
+              "displayName": "Bachelor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Work Eksperience",
+              "displayName": "Work Eksperience",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Eksperience Year",
+              "displayName": "Eksperience Year",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Match score",
+              "displayName": "Match score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Desicion",
+              "displayName": "Desicion",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Summary",
+              "displayName": "Summary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Recomendation",
+              "displayName": "Recomendation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        800,
+        160
+      ],
+      "id": "c4159d08-1e53-4133-bec2-651009870616",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "ExayRKutA70vd2xr",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.email }}",
+        "subject": "Congratulations! You Have Been Selected for an Interview",
+        "message": "=<h2>Congratulations, {{ $('Code in JavaScript').item.json.candidate_name }}!</h2>  <p>Thank you for submitting your application.</p>  <p>We have reviewed your CV and are pleased to inform you that you have passed the initial screening stage.</p>  <p>Our HR team will contact you soon regarding the interview schedule.</p>  <br>  <p>Best Regards,</p> <p><b>HR Team</b></p>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1104,
+        -16
+      ],
+      "id": "b2dd2962-9b19-4417-84fc-2063483967f8",
+      "name": "Send a message",
+      "webhookId": "58aeff44-e562-489d-a83b-6d10e67e88f6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "gOmRWorT6XYQq6Wx",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Download file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download file": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f57c89cc3d170040320fa2fb7ed8c940aba0f4c60149f5df4323946fe8adfcf7"
+  }
+}
